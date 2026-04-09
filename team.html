@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>გუნდი — DIACOR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Noto+Sans+Georgian:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="utility-bar">
+    <div class="container">
+      <div class="utility-info">
+        <span><i class="fas fa-phone"></i> <a href="tel:+995322518718">032 2 518 718</a></span>
+        <span><i class="fas fa-envelope"></i> <a href="mailto:info@diacor.ge">info@diacor.ge</a></span>
+        <span><i class="fas fa-clock"></i> ორშ-პარ: 09:00-18:00 | შაბ: 10:00-14:00</span>
+      </div>
+      <div class="utility-social">
+        <span class="lang-toggle"><a href="#" class="active">KA</a> <span class="separator">|</span> <a href="en/team.html">EN</a></span>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="DIACOR" class="logo-img">
+          </a>
+      <nav class="nav">
+        <div class="nav-links">
+          <a href="index.html">მთავარი</a>
+          <a href="about.html">ჩვენ შესახებ</a>
+          <a href="team.html" class="active">გუნდი</a>
+          <a href="services.html">სერვისები</a>
+          <a href="blog.html">ბლოგი</a>
+          <a href="faq.html">კითხვა-პასუხი</a>
+          <a href="contact.html">კონტაქტი</a>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+        <div class="nav-divider"></div>
+        <a href="contact.html" class="btn-appointment-green"><i class="fas fa-calendar-check"></i> ჩაწერა</a>
+      </nav>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-overlay"></div>
+  <div class="mobile-nav">
+    <a href="index.html">მთავარი</a>
+    <a href="about.html">ჩვენ შესახებ</a>
+    <a href="team.html">გუნდი</a>
+    <a href="services.html">სერვისები</a>
+    <a href="blog.html">ბლოგი</a>
+    <a href="faq.html">კითხვა-პასუხი</a>
+    <a href="contact.html">კონტაქტი</a>
+    <a href="contact.html" class="btn-appointment"><i class="fas fa-calendar-check"></i> ვიზიტის ჩაწერა</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">მთავარი</a>
+        <span>/</span>
+        <span>გუნდი</span>
+      </div>
+      <h1>ჩვენი ექიმები</h1>
+      <p>10+ მაღალკვალიფიციური სპეციალისტი თქვენი ჯანმრთელობისთვის</p>
+    </div>
+  </section>
+
+  <!-- Team Content -->
+  <section class="section">
+    <div class="container">
+      <!-- Filters -->
+      <div class="team-filters">
+        <div class="team-search">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="ჩაწერე საძიებო სიტყვა...">
+        </div>
+      </div>
+      <div class="filter-pills" data-target=".doctor-card">
+        <button class="filter-pill active" data-filter="">ყველა</button>
+        <button class="filter-pill" data-filter="ენდოკრინოლოგ">ენდოკრინოლოგია</button>
+        <button class="filter-pill" data-filter="პულმონოლოგ">პულმონოლოგია</button>
+        <button class="filter-pill" data-filter="კარდიოლოგ">კარდიოლოგია</button>
+        <button class="filter-pill" data-filter="ოფთალმოლოგ">ოფთალმოლოგია</button>
+        <button class="filter-pill" data-filter="რადიოლოგ">რადიოლოგია</button>
+        <button class="filter-pill" data-filter="ალერგოლოგ">ალერგოლოგია</button>
+      </div>
+
+      <!-- Doctor Grid -->
+      <div class="team-grid">
+        <!-- Doctor 1 -->
+        <div class="doctor-card" data-name="რამაზ ყურაშვილი ramaz kurashvili" data-specialty="ენდოკრინოლოგი დირექტორი">
+          <div class="doctor-avatar"><img src="images/doctors/doc1.jpg" alt="რამაზ ყურაშვილი"></div>
+          <div class="doctor-info">
+            <h3>რამაზ ყურაშვილი</h3>
+            <div class="doctor-specialty">ცენტრის დირექტორი, პროფესორი, ენდოკრინოლოგი</div>
+            <p class="doctor-desc">კლინიკის დირექტორი, ენდოკრინოლოგიის პროფესორი მრავალწლიანი კლინიკური და აკადემიური გამოცდილებით.</p>
+            <a href="#" class="doctor-link">პროფილი <i class="fas fa-arrow-right"></i></a>
+            <div class="doctor-expanded">
+              <div class="doctor-expanded-inner">
+                <div class="doctor-bio">დეტალური ინფორმაცია ხელმისაწვდომია კლინიკაში ვიზიტისას.</div>
+                <div class="doctor-detail-row"><i class="fas fa-graduation-cap"></i> <span>უმაღლესი სამედიცინო განათლება</span></div>
+                <div class="doctor-detail-row"><i class="fas fa-language"></i> <span>ქართული, რუსული, ინგლისური</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 2 -->
+        <div class="doctor-card" data-name="ლალი ნიკოლეიშვილი lali nikoleishvili" data-specialty="ენდოკრინოლოგი დამფუძნებელი">
+          <div class="doctor-avatar"><img src="images/doctors/doc2.jpg" alt="ლალი ნიკოლეიშვილი"></div>
+          <div class="doctor-info">
+            <h3>ლალი ნიკოლეიშვილი</h3>
+            <div class="doctor-specialty">დამფუძნებელი, ენდოკრინოლოგი, მედ. დოქტორი, პროფესორი</div>
+            <p class="doctor-desc">კლინიკის თანადამფუძნებელი, ენდოკრინოლოგიისა და მეტაბოლოგიის დეპარტამენტის ხელმძღვანელი.</p>
+            <a href="#" class="doctor-link">პროფილი <i class="fas fa-arrow-right"></i></a>
+            <div class="doctor-expanded">
+              <div class="doctor-expanded-inner">
+                <div class="doctor-bio">დეტალური ინფორმაცია ხელმისაწვდომია კლინიკაში ვიზიტისას.</div>
+                <div class="doctor-detail-row"><i class="fas fa-graduation-cap"></i> <span>უმაღლესი სამედიცინო განათლება</span></div>
+                <div class="doctor-detail-row"><i class="fas fa-language"></i> <span>ქართული, რუსული, ინგლისური</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 3 -->
+        <div class="doctor-card" data-name="ელენე შეროზია elene sherozia" data-specialty="პულმონოლოგი დამფუძნებელი">
+          <div class="doctor-avatar"><img src="images/doctors/doc3.jpg" alt="ელენე შეროზია"></div>
+          <div class="doctor-info">
+            <h3>ელენე შეროზია</h3>
+            <div class="doctor-specialty">დამფუძნებელი, პულმონოლოგი, შინაგანი მედიცინის ხელმძღვანელი</div>
+            <p class="doctor-desc">კლინიკის თანადამფუძნებელი, პულმონოლოგი და ფთიზიატრი, შინაგანი მედიცინის დეპარტამენტის ხელმძღვანელი.</p>
+            <a href="#" class="doctor-link">პროფილი <i class="fas fa-arrow-right"></i></a>
+            <div class="doctor-expanded">
+              <div class="doctor-expanded-inner">
+                <div class="doctor-bio">დეტალური ინფორმაცია ხელმისაწვდომია კლინიკაში ვიზიტისას.</div>
+                <div class="doctor-detail-row"><i class="fas fa-graduation-cap"></i> <span>უმაღლესი სამედიცინო განათლება</span></div>
+                <div class="doctor-detail-row"><i class="fas fa-language"></i> <span>ქართული, რუსული, ინგლისური</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 4 -->
+        <div class="doctor-card" data-name="ქეთევან ბანძავა ketevan bandzava" data-specialty="ენდოკრინოლოგი">
+          <div class="doctor-avatar"><img src="images/doctors/doc4.jpg" alt="ქეთევან ბანძავა"></div>
+          <div class="doctor-info">
+            <h3>ქეთევან ბანძავა</h3>
+            <div class="doctor-specialty">ენდოკრინოლოგი</div>
+            <p class="doctor-desc">ენდოკრინოლოგიის სპეციალისტი, შაქრიანი დიაბეტისა და ფარისებრი ჯირკვლის დაავადებების მართვის გამოცდილებით.</p>
+            <a href="#" class="doctor-link">პროფილი <i class="fas fa-arrow-right"></i></a>
+            <div class="doctor-expanded">
+              <div class="doctor-expanded-inner">
+                <div class="doctor-bio">დეტალური ინფორმაცია ხელმისაწვდომია კლინიკაში ვიზიტისას.</div>
+                <div class="doctor-detail-row"><i class="fas fa-graduation-cap"></i> <span>უმაღლესი სამედიცინო განათლება</span></div>
+                <div class="doctor-detail-row"><i class="fas fa-language"></i> <span>ქართული, რუსული, ინგლისური</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 5 -->
+        <div class="doctor-card" data-name="ციცი დარსალია tsitsi darsalia" data-specialty="პულმონოლოგი">
+          <div class="doctor-avatar"><img src="images/doctors/doc5.jpg" alt="ციცი დარსალია"></div>
+          <div class="doctor-info">
+            <h3>ციცი დარსალია</h3>
+            <div class="doctor-specialty">პულმონოლოგი</div>
+            <p class="doctor-desc">სასუნთქი სისტემის დაავადებების დიაგნოსტიკისა და მკურნალობის სპეციალისტი.</p>
+            <a href="#" class="doctor-link">პროფილი <i class="fas fa-arrow-right"></i></a>
+            <div class="doctor-expanded">
+              <div class="doctor-expanded-inner">
+                <div class="doctor-bio">დეტალური ინფორმაცია ხელმისაწვდომია კლინიკაში ვიზიტისას.</div>
+                <div class="doctor-detail-row"><i class="fas fa-graduation-cap"></i> <span>უმაღლესი სამედიცინო განათლება</span></div>
+                <div class="doctor-detail-row"><i class="fas fa-language"></i> <span>ქართული, რუსული, ინგლისური</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 6 -->
+        <div class="doctor-card" data-name="ინგა სანაია inga sanaia" data-specialty="ენდოკრინოლოგი">
+          <div class="doctor-avatar"><img src="images/doctors/doc6.jpg" alt="ინგა სანაია"></div>
+          <div class="doctor-info">
+            <h3>ინგა სანაია</h3>
+            <div class="doctor-specialty">ენდოკრინოლოგი</div>
+            <p class="doctor-desc">ენდოკრინული პათოლოგიის დიაგნოსტიკისა და მკურნალობის სპეციალისტი.</p>
+            <a href="#" class="doctor-link">პროფილი <i class="fas fa-arrow-right"></i></a>
+            <div class="doctor-expanded">
+              <div class="doctor-expanded-inner">
+                <div class="doctor-bio">დეტალური ინფორმაცია ხელმისაწვდომია კლინიკაში ვიზიტისას.</div>
+                <div class="doctor-detail-row"><i class="fas fa-graduation-cap"></i> <span>უმაღლესი სამედიცინო განათლება</span></div>
+                <div class="doctor-detail-row"><i class="fas fa-language"></i> <span>ქართული, რუსული, ინგლისური</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 7 -->
+        <div class="doctor-card" data-name="ნინო მასხულია nino maskhulia" data-specialty="ენდოკრინოლოგი">
+          <div class="doctor-avatar"><img src="images/doctors/doc7.jpg" alt="ნინო მასხულია"></div>
+          <div class="doctor-info">
+            <h3>ნინო მასხულია</h3>
+            <div class="doctor-specialty">ენდოკრინოლოგი</div>
+            <p class="doctor-desc">ენდოკრინოლოგიის სპეციალისტი, დიაბეტის მართვისა და პრევენციის მიმართულებით.</p>
+            <a href="#" class="doctor-link">პროფილი <i class="fas fa-arrow-right"></i></a>
+            <div class="doctor-expanded">
+              <div class="doctor-expanded-inner">
+                <div class="doctor-bio">დეტალური ინფორმაცია ხელმისაწვდომია კლინიკაში ვიზიტისას.</div>
+                <div class="doctor-detail-row"><i class="fas fa-graduation-cap"></i> <span>უმაღლესი სამედიცინო განათლება</span></div>
+                <div class="doctor-detail-row"><i class="fas fa-language"></i> <span>ქართული, რუსული, ინგლისური</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 8 -->
+        <div class="doctor-card" data-name="ნინო ნადირაძე nino nadiradze" data-specialty="ენდოკრინოლოგი">
+          <div class="doctor-avatar"><img src="images/doctors/doc8.jpg" alt="ნინო ნადირაძე"></div>
+          <div class="doctor-info">
+            <h3>ნინო ნადირაძე</h3>
+            <div class="doctor-specialty">ენდოკრინოლოგი</div>
+            <p class="doctor-desc">ენდოკრინოლოგიის სპეციალისტი ჰორმონული დარღვევებისა და მეტაბოლური დაავადებების მართვაში.</p>
+            <a href="#" class="doctor-link">პროფილი <i class="fas fa-arrow-right"></i></a>
+            <div class="doctor-expanded">
+              <div class="doctor-expanded-inner">
+                <div class="doctor-bio">დეტალური ინფორმაცია ხელმისაწვდომია კლინიკაში ვიზიტისას.</div>
+                <div class="doctor-detail-row"><i class="fas fa-graduation-cap"></i> <span>უმაღლესი სამედიცინო განათლება</span></div>
+                <div class="doctor-detail-row"><i class="fas fa-language"></i> <span>ქართული, რუსული, ინგლისური</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 9 -->
+        <div class="doctor-card" data-name="სალომე გუგუჩია salome guguchia" data-specialty="ენდოკრინოლოგი ბავშვთა">
+          <div class="doctor-avatar"><img src="images/doctors/doc9.jpg" alt="სალომე გუგუჩია"></div>
+          <div class="doctor-info">
+            <h3>სალომე გუგუჩია</h3>
+            <div class="doctor-specialty">ბავშვთა ენდოკრინოლოგი</div>
+            <p class="doctor-desc">პედიატრიული ენდოკრინოლოგიის სპეციალისტი, ბავშვთა დიაბეტისა და ჰორმონული დარღვევების მართვაში.</p>
+            <a href="#" class="doctor-link">პროფილი <i class="fas fa-arrow-right"></i></a>
+            <div class="doctor-expanded">
+              <div class="doctor-expanded-inner">
+                <div class="doctor-bio">დეტალური ინფორმაცია ხელმისაწვდომია კლინიკაში ვიზიტისას.</div>
+                <div class="doctor-detail-row"><i class="fas fa-graduation-cap"></i> <span>უმაღლესი სამედიცინო განათლება</span></div>
+                <div class="doctor-detail-row"><i class="fas fa-language"></i> <span>ქართული, რუსული, ინგლისური</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 10 -->
+        <div class="doctor-card" data-name="დარინა ღვინიაშვილი darina ghviniashvili" data-specialty="ენდოკრინოლოგი">
+          <div class="doctor-avatar"><img src="images/doctors/doc10.jpg" alt="დარინა ღვინიაშვილი"></div>
+          <div class="doctor-info">
+            <h3>დარინა ღვინიაშვილი</h3>
+            <div class="doctor-specialty">ენდოკრინოლოგი</div>
+            <p class="doctor-desc">ენდოკრინოლოგიის სპეციალისტი, ფარისებრი ჯირკვლისა და თირკმელზედა ჯირკვლის დაავადებების მართვაში.</p>
+            <a href="#" class="doctor-link">პროფილი <i class="fas fa-arrow-right"></i></a>
+            <div class="doctor-expanded">
+              <div class="doctor-expanded-inner">
+                <div class="doctor-bio">დეტალური ინფორმაცია ხელმისაწვდომია კლინიკაში ვიზიტისას.</div>
+                <div class="doctor-detail-row"><i class="fas fa-graduation-cap"></i> <span>უმაღლესი სამედიცინო განათლება</span></div>
+                <div class="doctor-detail-row"><i class="fas fa-language"></i> <span>ქართული, რუსული, ინგლისური</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <span class="active">1</span>
+        <a href="#">2</a>
+        <a href="#"><i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Ribbon -->
+  <section class="contact-ribbon">
+    <div class="container">
+      <div class="ribbon-info">
+        <div class="ribbon-item"><i class="fas fa-phone"></i><a href="tel:+995322518718">032 2 518 718</a></div>
+        <div class="ribbon-item"><i class="fas fa-envelope"></i><a href="mailto:info@diacor.ge">info@diacor.ge</a></div>
+      </div>
+      <a href="contact.html" class="btn-appointment"><i class="fas fa-calendar-check"></i> ვიზიტის ჩაწერა</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid-5col">
+        <div class="footer-about">
+          <a href="index.html" class="logo">
+              <img src="images/logo-white.png" alt="DIACOR" class="logo-img">
+            </a>
+          <p>მრავალპროფილური კლინიკა, მაღალკვალიფიციური მომსახურეობა, ხარისხზე ორიენტირებული ლაბორატორია.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>სწრაფი ბმულები</h4>
+          <div class="footer-links">
+            <a href="contact.html"><i class="fas fa-calendar-check"></i> ვიზიტის ჩაწერა</a>
+            <a href="programs.html"><i class="fas fa-heartbeat"></i> ჯანმრთელობის პროგრამები</a>
+            <a href="faq.html"><i class="fas fa-question-circle"></i> კითხვა-პასუხი</a>
+            <a href="blog.html"><i class="fas fa-newspaper"></i> ბლოგი</a>
+          </div>
+        </div>
+        <div>
+          <h4>ნავიგაცია</h4>
+          <div class="footer-links">
+            <a href="index.html">მთავარი</a>
+            <a href="about.html">ჩვენ შესახებ</a>
+            <a href="team.html">გუნდი</a>
+            <a href="services.html">სერვისები</a>
+            <a href="contact.html">კონტაქტი</a>
+            <a href="#">პარტნიორები</a>
+            <a href="#">ვაკანსიები</a>
+          </div>
+        </div>
+        <div>
+          <h4>კონტაქტი</h4>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>ლუბლიანას ქ. N5, მე-5 სართული, თბილისი</span></div>
+          <div class="footer-contact-item"><i class="fas fa-phone"></i><span>032 2 518 718</span></div>
+          <div class="footer-contact-item"><i class="fas fa-phone"></i><span>599 47 14 47</span></div>
+          <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>info@diacor.ge</span></div>
+        </div>
+        <div>
+          <h4>სამუშაო საათები</h4>
+          <div class="footer-contact-item"><i class="fas fa-clock"></i><span>ორშაბათი-პარასკევი<br>09:00 — 18:00</span></div>
+          <div class="footer-contact-item"><i class="fas fa-clock"></i><span>შაბათი<br>10:00 — 14:00</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 DIACOR. ყველა უფლება დაცულია. | DEMO VERSION
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile CTA Bar -->
+  <div class="mobile-cta-bar">
+    <a href="contact.html"><i class="fas fa-calendar-check"></i> ვიზიტის ჩაწერა</a>
+  </div>
+
+  <div class="cookie-banner">
+    <div class="container">
+      <p><i class="fas fa-cookie-bite"></i> ჩვენი ვებსაიტი იყენებს cookie ფაილებს გამოცდილების გასაუმჯობესებლად.</p>
+      <div class="cookie-buttons">
+        <button class="cookie-accept">ვეთანხმები</button>
+        <button class="cookie-decline">არ ვეთანხმები</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="scroll-top" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+  <script src="js/main.js"></script>
+</body>
+</html>
