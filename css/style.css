@@ -1829,6 +1829,18 @@ h1, h2, h3, h4, h5, h6 {
   align-items: start;
 }
 
+.contact-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .contact-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .contact-form-group {
   margin-bottom: 20px;
 }
