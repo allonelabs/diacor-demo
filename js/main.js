@@ -467,4 +467,368 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // ============================================
+  // BOOKING MODAL — fake but convincing flow
+  // ============================================
+  (function initBookingModal() {
+    var isEN = document.documentElement.lang === 'en';
+
+    var T = isEN ? {
+      title: 'Book an Appointment',
+      step: 'Step',
+      of: 'of',
+      pickService: 'Choose a service',
+      pickDoctor: 'Choose a doctor',
+      pickDate: 'Pick a date and time',
+      yourDetails: 'Your details',
+      name: 'Full name',
+      phone: 'Phone number',
+      namePh: 'e.g. Nino Beridze',
+      phonePh: '+995 5XX XX XX XX',
+      back: 'Back',
+      next: 'Continue',
+      confirm: 'Confirm Booking',
+      successTitle: 'Booking Confirmed!',
+      successText: 'We\'ve sent the details to your phone. Our team will call you to confirm shortly.',
+      summaryService: 'Service',
+      summaryDoctor: 'Doctor',
+      summaryDate: 'Date & time',
+      anyDoctor: 'Any available doctor',
+      noSlots: 'No slots',
+      services: [
+        { id: 'endo', icon: 'fa-disease', label: 'Endocrinology' },
+        { id: 'card', icon: 'fa-heartbeat', label: 'Cardiology' },
+        { id: 'pulm', icon: 'fa-lungs', label: 'Pulmonology' },
+        { id: 'lab',  icon: 'fa-flask', label: 'Laboratory' },
+        { id: 'opht', icon: 'fa-eye', label: 'Ophthalmology' },
+        { id: 'check', icon: 'fa-shield-alt', label: 'Health Checkup' }
+      ],
+      doctors: {
+        endo: [
+          { name: 'Prof. Ramaz Kurashvili', spec: 'Endocrinologist · Director' },
+          { name: 'Lali Nikoleishvili', spec: 'Endocrinologist · Founder' },
+          { name: 'Ketevan Bandzava', spec: 'Endocrinologist' }
+        ],
+        card: [ { name: 'Giorgi Tatishvili', spec: 'Cardiologist' } ],
+        pulm: [ { name: 'Elene Sherozia', spec: 'Pulmonologist · Founder' } ],
+        lab:  [ { name: 'Lab team', spec: 'No appointment needed' } ],
+        opht: [ { name: 'Nino Kvaratskhelia', spec: 'Ophthalmologist' } ],
+        check:[ { name: 'Multidisciplinary team', spec: 'Comprehensive checkup' } ]
+      },
+      days: ['SUN','MON','TUE','WED','THU','FRI','SAT']
+    } : {
+      title: 'ვიზიტის ჩაწერა',
+      step: 'ნაბიჯი',
+      of: '/',
+      pickService: 'აირჩიეთ სერვისი',
+      pickDoctor: 'აირჩიეთ ექიმი',
+      pickDate: 'აირჩიეთ თარიღი და დრო',
+      yourDetails: 'თქვენი მონაცემები',
+      name: 'სახელი და გვარი',
+      phone: 'ტელეფონი',
+      namePh: 'მაგ. ნინო ბერიძე',
+      phonePh: '+995 5XX XX XX XX',
+      back: 'უკან',
+      next: 'შემდეგი',
+      confirm: 'ვიზიტის დადასტურება',
+      successTitle: 'ვიზიტი დადასტურებულია!',
+      successText: 'დეტალები გამოგზავნილია თქვენს ნომერზე. ჩვენი თანამშრომელი მალე დაგიკავშირდებათ.',
+      summaryService: 'სერვისი',
+      summaryDoctor: 'ექიმი',
+      summaryDate: 'თარიღი / დრო',
+      anyDoctor: 'ნებისმიერი თავისუფალი ექიმი',
+      noSlots: 'დაკავებული',
+      services: [
+        { id: 'endo', icon: 'fa-disease', label: 'ენდოკრინოლოგია' },
+        { id: 'card', icon: 'fa-heartbeat', label: 'კარდიოლოგია' },
+        { id: 'pulm', icon: 'fa-lungs', label: 'პულმონოლოგია' },
+        { id: 'lab',  icon: 'fa-flask', label: 'ლაბორატორია' },
+        { id: 'opht', icon: 'fa-eye', label: 'ოფთალმოლოგია' },
+        { id: 'check', icon: 'fa-shield-alt', label: 'ჯანმრთელობის ჩექაფი' }
+      ],
+      doctors: {
+        endo: [
+          { name: 'პროფ. რამაზ ყურაშვილი', spec: 'ენდოკრინოლოგი · დირექტორი' },
+          { name: 'ლალი ნიკოლეიშვილი', spec: 'ენდოკრინოლოგი · დამფუძნებელი' },
+          { name: 'ქეთევან ბანძავა', spec: 'ენდოკრინოლოგი' }
+        ],
+        card: [ { name: 'გიორგი ტატიშვილი', spec: 'კარდიოლოგი' } ],
+        pulm: [ { name: 'ელენე შეროზია', spec: 'პულმონოლოგი · დამფუძნებელი' } ],
+        lab:  [ { name: 'ლაბორატორიის გუნდი', spec: 'ჩაწერა არ არის საჭირო' } ],
+        opht: [ { name: 'ნინო კვარაცხელია', spec: 'ოფთალმოლოგი' } ],
+        check:[ { name: 'მულტიდისციპლინარული გუნდი', spec: 'კომპლექსური ჩექაფი' } ]
+      },
+      days: ['კვი','ორშ','სამ','ოთხ','ხუთ','პარ','შაბ']
+    };
+
+    var state = { step: 1, service: null, doctor: null, date: null, time: null, name: '', phone: '' };
+    var TIMES = ['09:30','10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30'];
+
+    // Build modal HTML
+    var modal = document.createElement('div');
+    modal.className = 'booking-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.innerHTML = '' +
+      '<div class="booking-modal-overlay" data-close></div>' +
+      '<div class="booking-modal-content">' +
+        '<div class="booking-modal-header">' +
+          '<h2 class="booking-modal-title">' + T.title + '</h2>' +
+          '<button class="booking-modal-close" data-close aria-label="Close"><i class="fas fa-times"></i></button>' +
+        '</div>' +
+        '<div class="booking-progress">' +
+          '<div class="booking-progress-bar active"></div>' +
+          '<div class="booking-progress-bar"></div>' +
+          '<div class="booking-progress-bar"></div>' +
+          '<div class="booking-progress-bar"></div>' +
+        '</div>' +
+        '<div class="booking-modal-body">' +
+          // Step 1
+          '<div class="booking-step active" data-step="1">' +
+            '<div class="booking-step-label">' + T.step + ' 1 ' + T.of + ' 4</div>' +
+            '<h3>' + T.pickService + '</h3>' +
+            '<div class="booking-options">' +
+              T.services.map(function(s){
+                return '<button type="button" class="booking-option" data-service="' + s.id + '" data-label="' + s.label + '">' +
+                       '<i class="fas ' + s.icon + '"></i><span>' + s.label + '</span></button>';
+              }).join('') +
+            '</div>' +
+          '</div>' +
+          // Step 2
+          '<div class="booking-step" data-step="2">' +
+            '<div class="booking-step-label">' + T.step + ' 2 ' + T.of + ' 4</div>' +
+            '<h3>' + T.pickDoctor + '</h3>' +
+            '<div class="booking-doctors" data-doctors></div>' +
+          '</div>' +
+          // Step 3
+          '<div class="booking-step" data-step="3">' +
+            '<div class="booking-step-label">' + T.step + ' 3 ' + T.of + ' 4</div>' +
+            '<h3>' + T.pickDate + '</h3>' +
+            '<div class="booking-date-row" data-dates></div>' +
+            '<div class="booking-times" data-times></div>' +
+          '</div>' +
+          // Step 4
+          '<div class="booking-step" data-step="4">' +
+            '<div class="booking-step-label">' + T.step + ' 4 ' + T.of + ' 4</div>' +
+            '<h3>' + T.yourDetails + '</h3>' +
+            '<div class="booking-summary" data-summary></div>' +
+            '<div class="booking-form-group"><label>' + T.name + '</label><input type="text" data-input="name" placeholder="' + T.namePh + '"></div>' +
+            '<div class="booking-form-group"><label>' + T.phone + '</label><input type="tel" data-input="phone" placeholder="' + T.phonePh + '"></div>' +
+          '</div>' +
+          // Success
+          '<div class="booking-step" data-step="success">' +
+            '<div class="booking-success">' +
+              '<div class="booking-success-icon"><i class="fas fa-check"></i></div>' +
+              '<h3>' + T.successTitle + '</h3>' +
+              '<p>' + T.successText + '</p>' +
+              '<div class="booking-success-details" data-success-details></div>' +
+            '</div>' +
+          '</div>' +
+          // Actions
+          '<div class="booking-actions" data-actions>' +
+            '<button type="button" class="booking-back" data-back>' + T.back + '</button>' +
+            '<button type="button" class="booking-next" data-next disabled>' + T.next + '</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(modal);
+
+    var $ = function(sel){ return modal.querySelector(sel); };
+    var $$ = function(sel){ return modal.querySelectorAll(sel); };
+    var bars = $$('.booking-progress-bar');
+    var stepEls = $$('.booking-step');
+    var actions = $('[data-actions]');
+    var backBtn = $('[data-back]');
+    var nextBtn = $('[data-next]');
+
+    function updateUI() {
+      stepEls.forEach(function(el){
+        el.classList.toggle('active', el.getAttribute('data-step') == String(state.step));
+      });
+      bars.forEach(function(b, i){ b.classList.toggle('active', i < state.step); });
+      backBtn.style.visibility = (state.step > 1 && state.step <= 4) ? 'visible' : 'hidden';
+      // Next button text
+      if (state.step === 4) nextBtn.textContent = T.confirm;
+      else nextBtn.textContent = T.next;
+      // Validate
+      var valid = false;
+      if (state.step === 1) valid = !!state.service;
+      else if (state.step === 2) valid = !!state.doctor;
+      else if (state.step === 3) valid = !!state.date && !!state.time;
+      else if (state.step === 4) valid = state.name.trim().length > 1 && state.phone.trim().length > 4;
+      nextBtn.disabled = !valid;
+      actions.style.display = (state.step > 4) ? 'none' : '';
+    }
+
+    function openModal(prefillService) {
+      state = { step: 1, service: null, doctor: null, date: null, time: null, name: '', phone: '' };
+      // reset selections
+      $$('.booking-option').forEach(function(b){ b.classList.remove('selected'); });
+      $('[data-input="name"]').value = '';
+      $('[data-input="phone"]').value = '';
+      if (prefillService) {
+        var btn = $('.booking-option[data-service="' + prefillService + '"]');
+        if (btn) btn.click();
+        // Move to step 2 immediately if prefilled
+        // Actually, just leave on step 1 with selection visible
+      }
+      modal.classList.add('active');
+      document.body.classList.add('no-scroll');
+      updateUI();
+    }
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+    }
+
+    // Step 1: services
+    $$('.booking-option').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        $$('.booking-option').forEach(function(b){ b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        state.service = { id: btn.getAttribute('data-service'), label: btn.getAttribute('data-label') };
+        updateUI();
+      });
+    });
+
+    // Step 2: doctors (dynamic)
+    function renderDoctors() {
+      var container = $('[data-doctors]');
+      var list = T.doctors[state.service.id] || [];
+      container.innerHTML = list.map(function(d, i){
+        var initials = d.name.split(' ').map(function(p){ return p[0]; }).slice(0,2).join('');
+        return '<button type="button" class="booking-doctor" data-doctor="' + i + '">' +
+                 '<div class="booking-doctor-avatar">' + initials + '</div>' +
+                 '<div class="booking-doctor-info">' +
+                   '<div class="booking-doctor-name">' + d.name + '</div>' +
+                   '<div class="booking-doctor-spec">' + d.spec + '</div>' +
+                 '</div>' +
+               '</button>';
+      }).join('');
+      container.querySelectorAll('.booking-doctor').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          container.querySelectorAll('.booking-doctor').forEach(function(b){ b.classList.remove('selected'); });
+          btn.classList.add('selected');
+          var idx = parseInt(btn.getAttribute('data-doctor'), 10);
+          state.doctor = list[idx];
+          updateUI();
+        });
+      });
+    }
+
+    // Step 3: dates + times
+    function renderDates() {
+      var container = $('[data-dates]');
+      var today = new Date();
+      var html = '';
+      for (var i = 1; i <= 14; i++) {
+        var d = new Date(today);
+        d.setDate(today.getDate() + i);
+        // Skip Sundays
+        if (d.getDay() === 0) continue;
+        html += '<button type="button" class="booking-date" data-date="' + d.toISOString().slice(0,10) + '" data-display="' + (d.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]) + '">' +
+                  '<span class="booking-date-day">' + T.days[d.getDay()] + '</span>' +
+                  '<span class="booking-date-num">' + d.getDate() + '</span>' +
+                '</button>';
+      }
+      container.innerHTML = html;
+      container.querySelectorAll('.booking-date').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          container.querySelectorAll('.booking-date').forEach(function(b){ b.classList.remove('selected'); });
+          btn.classList.add('selected');
+          state.date = { iso: btn.getAttribute('data-date'), display: btn.getAttribute('data-display') };
+          state.time = null;
+          renderTimes();
+          updateUI();
+        });
+      });
+    }
+    function renderTimes() {
+      var container = $('[data-times]');
+      // Pseudo-random "booked" slots based on date
+      var seed = state.date ? state.date.iso.split('-').reduce(function(a,b){ return a + parseInt(b,10); }, 0) : 0;
+      container.innerHTML = TIMES.map(function(t, i){
+        var booked = ((i * 7 + seed) % 5) === 0;
+        return '<button type="button" class="booking-time" data-time="' + t + '" ' + (booked ? 'disabled' : '') + '>' + t + '</button>';
+      }).join('');
+      container.querySelectorAll('.booking-time').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          if (btn.disabled) return;
+          container.querySelectorAll('.booking-time').forEach(function(b){ b.classList.remove('selected'); });
+          btn.classList.add('selected');
+          state.time = btn.getAttribute('data-time');
+          updateUI();
+        });
+      });
+    }
+
+    // Step 4: summary + inputs
+    function renderSummary() {
+      $('[data-summary]').innerHTML =
+        '<div class="booking-summary-row"><span>' + T.summaryService + '</span><strong>' + state.service.label + '</strong></div>' +
+        '<div class="booking-summary-row"><span>' + T.summaryDoctor + '</span><strong>' + state.doctor.name + '</strong></div>' +
+        '<div class="booking-summary-row"><span>' + T.summaryDate + '</span><strong>' + state.date.display + ' · ' + state.time + '</strong></div>';
+    }
+    $('[data-input="name"]').addEventListener('input', function(e){ state.name = e.target.value; updateUI(); });
+    $('[data-input="phone"]').addEventListener('input', function(e){ state.phone = e.target.value; updateUI(); });
+
+    // Navigation
+    nextBtn.addEventListener('click', function(){
+      if (state.step === 1) { state.step = 2; renderDoctors(); }
+      else if (state.step === 2) { state.step = 3; renderDates(); renderTimes(); }
+      else if (state.step === 3) { state.step = 4; renderSummary(); }
+      else if (state.step === 4) {
+        // Submit (fake)
+        $('[data-success-details]').innerHTML =
+          '<div class="booking-summary-row"><span>' + T.summaryService + '</span><strong>' + state.service.label + '</strong></div>' +
+          '<div class="booking-summary-row"><span>' + T.summaryDoctor + '</span><strong>' + state.doctor.name + '</strong></div>' +
+          '<div class="booking-summary-row"><span>' + T.summaryDate + '</span><strong>' + state.date.display + ' · ' + state.time + '</strong></div>';
+        state.step = 'success';
+        // Hide actions, show only close
+        actions.style.display = 'none';
+        stepEls.forEach(function(el){
+          el.classList.toggle('active', el.getAttribute('data-step') === 'success');
+        });
+        bars.forEach(function(b){ b.classList.add('active'); });
+        return;
+      }
+      updateUI();
+    });
+    backBtn.addEventListener('click', function(){
+      if (state.step > 1 && typeof state.step === 'number') {
+        state.step--;
+        updateUI();
+      }
+    });
+
+    // Close handlers
+    modal.querySelectorAll('[data-close]').forEach(function(el){
+      el.addEventListener('click', closeModal);
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    // --- Wire trigger buttons ---
+    // Any button/link with .btn-appointment, .btn-appointment-green, or [data-book] opens the modal.
+    // Also: mobile CTA bar link, booking-highlight phones — leave alone.
+    function wireTriggers() {
+      var triggers = document.querySelectorAll('.btn-appointment, .btn-appointment-green, [data-book], .mobile-cta-bar a');
+      triggers.forEach(function(el){
+        // Skip if it points at a tel: link
+        var href = el.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0 || href.indexOf('mailto:') === 0) return;
+        el.addEventListener('click', function(e){
+          e.preventDefault();
+          var prefill = el.getAttribute('data-book') || null;
+          openModal(prefill);
+        });
+      });
+    }
+    wireTriggers();
+
+    // Expose for inline triggers if needed
+    window.diacorOpenBooking = openModal;
+  })();
+
 });
